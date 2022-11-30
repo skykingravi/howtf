@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How ?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden !important;
+        }
+
+        .bx {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+        }
+
+        h1 {
+            font-size: 60px;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>😱</h1>
+    <div class="bx"></div>
+    <script>
+        let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+        let box = document.querySelector(".bx");
+        function genhex() {
+            return `#${hex[Math.floor(Math.random() * hex.length)]}${hex[Math.floor(Math.random() * hex.length)]}${hex[Math.floor(Math.random() * hex.length)]}${hex[Math.floor(Math.random() * hex.length)]}${hex[Math.floor(Math.random() * hex.length)]}${hex[Math.floor(Math.random() * hex.length)]}`;
+        }
+        let err = () => {
+            let bxshd = "";
+            box.style.background = genhex();
+            for (let x = 0; x < document.body.clientWidth; x += 10) {
+                for (let y = 0; y < document.body.clientHeight; y += 10) {
+                    bxshd += `${x}px ${y}px 0px ${genhex()}, `;
+                }
+            }
+            box.style.boxShadow = bxshd.substring(0, bxshd.length - 2);
+            setTimeout(err, 100);
+        };
+        err();
+    </script>
+</body>
+
+</html>
